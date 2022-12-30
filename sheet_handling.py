@@ -189,8 +189,8 @@ def NextBirthdays(reference_date):
             if next_birthday_month == int(row[0]) and next_birthday_day == int(row[1]):
                 #Append the birthday to the list of current next birthdays
                 next_birthday.append(row)
-            #Else if the month if the birthday is earlier than the current next birthdays and the month of the birthday is after the month of the refernce date
-            elif int(row[0]) < next_birthday_month and int(row[0]) > reference_date.month:
+            #Else if the month of the birthday is earlier than the current next birthdays and the month of the birthday is after or on the month of the refernce date
+            elif int(row[0]) < next_birthday_month and int(row[0]) >= reference_date.month:
 
                 #Set the birthday as the current next birthday
                 next_birthday_month = int(row[0])

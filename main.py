@@ -22,22 +22,28 @@ birthdays_today = sheet_handling.BirthdaysOnDate(date_today)
 #Print the current date in the format weekday, month, day, year
 print("Today's Date is:", date_today.strftime("%A %B %d %Y"))
 
+#Gets the next birthday
+next_birthdays = sheet_handling.NextBirthdays(date_today)
+
 #Print all the names of people who's birthdays are today
-if len(birthdays_today) == 0:
+if len(next_birthdays) == 0:
+    print("No birthdays saved")
+elif len(birthdays_today) == 0:
     print("No birthdays today.")
 elif len(birthdays_today) == 1:
     print("Today's birthday celebrant is", birthdays_today[0] + ".")
 else:
     print("Today's birthday celebrants are", ", ".join(birthdays_today) + ".")
 
-#Gets the next birthday
-next_birthdays = sheet_handling.NextBirthdays(date_today)
+#If there is at least 1 birthday
+if len(next_birthdays) > 0:
 
-#Loops through the list of birthdays and prints them in a neat format
-print("The next birthday coming up is for ", end = "")
-for celebrant in next_birthdays:
-    print(celebrant[2] + ", ", end = "")
-print("on", date(2022, int(next_birthdays[0][0]), int(next_birthdays[0][1])).strftime("%A %B %d"))
+    #Loops through the list of birthdays and prints them in a neat format
+    #NOTE: Year is not set correctly if the next birthday is next year
+    print("The next birthday coming up is for ", end = "")
+    for celebrant in next_birthdays:
+        print(celebrant[2] + ", ", end = "")
+    print("on", date(date_today.year, int(next_birthdays[0][0]), int(next_birthdays[0][1])).strftime("%B %d"))
 
 #While the program is running
 while running:
