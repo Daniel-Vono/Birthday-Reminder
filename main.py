@@ -49,7 +49,7 @@ if len(next_birthdays) > 0:
 while running:
 
     #Ask the user for what they would like to do next
-    selcetion = input("\nWhat would you like to do?\n0: Exit the program\n1: Add new birthday celebrant\n")
+    selcetion = input("\nWhat would you like to do?\n0: Exit the program\n1: Add new birthday celebrant\n2: List all birthdays this month\n")
 
     #Handle the choice the user made
     match selcetion:
@@ -59,6 +59,9 @@ while running:
         case "1":
             #Add a new birthday to the birthday sheet
             sheet_handling.AddNewBirthday()
+        case "2":
+            #Lists the birthdays that are in the current month
+            sheet_handling.ListBirthdaysThisMonth()
         case _:
             #Print unknown input
             print("Unknown input, please try again")

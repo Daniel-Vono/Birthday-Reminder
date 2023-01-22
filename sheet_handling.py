@@ -163,6 +163,35 @@ def AddNewBirthday():
     #Sort the birthday sheet to find the right spot for the new birthday in the sheet
     SortSheetByMonth()
 
+#Lists the birthdays that are in the current month
+def ListBirthdaysThisMonth():
+
+    #Opens the birthday sheet file
+    with open("birthdays.csv") as file:
+
+        #Creates a file reader to read the conents of the birthday sheet
+        reader = csv.reader(file)
+
+        #Stores the lines of the birthday sheet that have birhtdays this month
+        lines_in_month = []
+
+        #For each row in the file
+        for row in reader:
+
+            #Check if the month of the birthday matches the current month and append it to the lines list if it does
+            if row[0] == str(date.today().month):
+                lines_in_month.append(row)
+                
+    #If the number of lines of birthdays equals 0, print there are no birthdays and exit the function
+    if(len(lines_in_month) == 0):
+        print("No birthdays this month")
+        return
+    
+    #Prints all of the birthdays stored in the lines
+    print("Birthdays this month are:")
+    for line in lines_in_month:
+        print(line[2], ":", date(date.today().year, int(line[0]), int(line[1])).strftime("%A %B %d %Y"))
+                        
 #Returns the next birthday coming up
 #Takes a date as a parameter that is used as the refernce date to deternim which birthdays follow it
 def NextBirthdays(reference_date):
